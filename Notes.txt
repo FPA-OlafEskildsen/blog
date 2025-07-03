@@ -1,0 +1,9 @@
+.LOG
+9:07 am 30/06/2025
+1) Measure (using CMM) the tub rear samples at FPA Geoff F & Sada TODAY
+2) Check with Richard. W to do Thermal analysis of Bearing Housing. (Olaf-Monday)
+3) Understand axial displacement of Bearing in Option-1 (Low risk. Monitor production)
+4) Find from FPT on max Bearing Hsg Temp. Olaf.
+5) Confirm HBS101 max wash temperature. (Sada to check with Fan, Emma, Chan)
+6) Write down justification for 5%. failure mode (on option 2)
+7) Olaf to estimate Radial load of Front and Rear Bearings
