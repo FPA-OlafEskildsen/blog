@@ -1,0 +1,97 @@
+version: "0.0.1"
+monitoring_collection: #addresses that need to be monitored at a given polling rate
+  addresses:
+    - module_id: 1
+      start_address: 128 # Covers motor speed -> motor temp -> fault flag
+      end_address: 129
+      polling_period: 0.1
+  fields: #The fields want to constantly monitor
+    - field: GET_MOTOR_SPEED 
+      result: MOTOR_SPEED
+
+sequence_collection:
+- description: Main
+  operations:
+  - operation: spin
+    speed: 35
+    accel: 50
+    clockwise: True
+  - operation: wait
+    duration: 3
+
+  - operation: spin
+    speed: 83
+    accel: 50
+    clockwise: True
+  - operation: wait
+    duration: 8
+
+  - operation: spin
+    speed: 105
+    accel: 50
+    clockwise: True
+  - operation: wait
+    duration: 15
+
+  - operation: spin
+    speed: 799
+    accel: 50
+    clockwise: True
+  - operation: wait
+    duration: 13
+
+  - operation: spin
+    speed: 800
+    accel: 10
+    clockwise: True
+  - operation: wait
+    duration: 20
+
+  - operation: spin
+    speed: 105
+    accel: 50
+    clockwise: True
+
+  - operation: condition
+    parameter: MOTOR_SPEED
+    condition: "=="
+    target: 105
+    timeout: 180
+    go_to_else: test_end
+    
+  - operation: write_field  
+    field: SELECT_PID 
+    value: 1  
+ 
+  - operation: spin
+    speed: 93
+    accel: 50
+    deccel: 30
+    clockwise: True
+  - operation: wait
+    duration: 5
+    
+  - operation: write_field  
+    field: SELECT_PID 
+    value: 0  
+
+  - operation: spin
+    speed: 93
+    accel: 50
+    deccel: 30
+    clockwise: True
+  - operation: wait
+    duration: 5
+
+
+  - operation: spin
+    speed: 120
+    accel: 1001
+    deccel: 30
+    clockwise: True
+  - operation: wait
+    duration: 5
+
+
+  - operation: stop
+    id_tag: test_end
